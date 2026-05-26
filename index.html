@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stackly Bakery — Artisan Bread & Pastries</title>
+  <title>Stackly Bakery — Artisan Bread &amp; Pastries</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -23,7 +23,7 @@
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
   <div class="mobile-menu-order">
-    <a href="shop.html" class="mobile-menu-order-btn">Order Now</a>
+    <a href="login.html" class="mobile-menu-order-btn">Login</a>
   </div>
   <div class="mobile-menu-footer">STACKLY BAKERY · EST. 2003</div>
 </nav>
@@ -37,7 +37,6 @@
       class="nav-logo-img"
       loading="eager"
     />
-    <span class="nav-logo-text"> <span></span></span>
   </a>
   <nav class="nav-links">
     <a href="index.html" class="active">Home</a>
@@ -46,27 +45,26 @@
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <a href="shop.html" class="nav-cta">Order Now</a>
+  <a href="login.html" class="nav-cta">Login</a>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- ══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      HERO SLIDER
-══════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <section class="hero-home">
   <div class="hero-slider">
 
     <div class="hero-slide active">
-      <img
-        src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1600&q=80&fit=crop&fm=webp"
-        alt="Fresh sourdough bread"
-        loading="eager"
-      />
+      <picture>
+        <source srcset="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1600&q=80&fit=crop&fm=webp" type="image/webp" />
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1600&q=80&fit=crop" alt="Fresh sourdough bread" loading="eager" />
+      </picture>
       <div class="hero-content">
         <p class="hero-eyebrow">Baked Fresh Every Morning</p>
-        <h1 class="hero-title">Crafted with<br /><em>Passion &</em><br />Tradition</h1>
+        <h1 class="hero-title">Crafted with<br /><em>Passion &amp;</em><br />Tradition</h1>
         <p class="hero-text">Hand-shaped loaves, slow-fermented sourdoughs, and pastries made from heritage grains — the old way, every single day.</p>
         <div class="hero-btns">
           <a href="menu.html" class="btn btn-primary btn-lg btn-arrow">Explore Menu</a>
@@ -76,14 +74,13 @@
     </div>
 
     <div class="hero-slide">
-      <img
-        src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1600&q=80&fit=crop&fm=webp"
-        alt="Assorted pastries"
-        loading="lazy"
-      />
+      <picture>
+        <source srcset="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1600&q=80&fit=crop&fm=webp" type="image/webp" />
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1600&q=80&fit=crop" alt="Assorted pastries" loading="lazy" />
+      </picture>
       <div class="hero-content">
         <p class="hero-eyebrow">Sweet Moments Daily</p>
-        <h1 class="hero-title">Pastries Worth<br /><em>Waking Up</em><br />Early For</h1>
+        <h1 class="hero-title">Pastries Worth<br /><em>WakingUp</em><br />Early For</h1>
         <p class="hero-text">Buttery croissants, fruit tarts, and hand-piped cakes — each made in-house before sunrise so they're perfect for you.</p>
         <div class="hero-btns">
           <a href="menu.html" class="btn btn-primary btn-lg btn-arrow">View Pastries</a>
@@ -93,11 +90,10 @@
     </div>
 
     <div class="hero-slide">
-      <img
-        src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1600&q=80&fit=crop&fm=webp"
-        alt="Baker at work"
-        loading="lazy"
-      />
+      <picture>
+        <source srcset="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1600&q=80&fit=crop&fm=webp" type="image/webp" />
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1600&q=80&fit=crop" alt="Baker at work" loading="lazy" />
+      </picture>
       <div class="hero-content">
         <p class="hero-eyebrow">Since 2003</p>
         <h1 class="hero-title">Twenty Years of<br /><em>Artisan</em><br />Excellence</h1>
@@ -149,6 +145,42 @@
   </div>
 </div>
 
+<!-- FEATURE STRIP -->
+<div class="feature-strip">
+  <div class="container">
+    <div class="feature-strip-grid">
+      <div class="feature-strip-item reveal" data-delay="1">
+        <span class="feature-strip-icon">🌾</span>
+        <div>
+          <div class="feature-strip-name">Local Heritage Grains</div>
+          <div class="feature-strip-desc">Milled from farms within 100km, stoneground to order</div>
+        </div>
+      </div>
+      <div class="feature-strip-item reveal" data-delay="2">
+        <span class="feature-strip-icon">🌙</span>
+        <div>
+          <div class="feature-strip-name">Baked at 4am Daily</div>
+          <div class="feature-strip-desc">Everything oven-fresh the very morning you eat it</div>
+        </div>
+      </div>
+      <div class="feature-strip-item reveal" data-delay="3">
+        <span class="feature-strip-icon">🌿</span>
+        <div>
+          <div class="feature-strip-name">Zero Additives</div>
+          <div class="feature-strip-desc">Flour, water, salt and time — nothing more needed</div>
+        </div>
+      </div>
+      <div class="feature-strip-item reveal" data-delay="4">
+        <span class="feature-strip-icon">🚴</span>
+        <div>
+          <div class="feature-strip-name">Free Local Delivery</div>
+          <div class="feature-strip-desc">Orders over £25 delivered free within 5 miles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CATEGORIES -->
 <section class="section categories-section">
   <div class="container">
@@ -160,7 +192,10 @@
 
     <div class="categories-grid">
       <div class="cat-card reveal" data-delay="1">
-        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?w=600&q=80&fit=crop&fm=webp" alt="Artisan Breads" loading="lazy" />
+        <picture>
+          <source srcset="https://pub-aaa82e9851064d22b954c3ebbafc9ae6.r2.dev/legacy/webp/freshly-baked-assortment-of-artisan-breads-Z7pfWHt-5vGHGeIwTIzjU.webp" type="image/webp" />
+          <img src="https://pub-aaa82e9851064d22b954c3ebbafc9ae6.r2.dev/legacy/webp/freshly-baked-assortment-of-artisan-breads-Z7pfWHt-5vGHGeIwTIzjU.webp" alt="Artisan Breads" loading="lazy" />
+        </picture>
         <div class="cat-card-info">
           <div class="cat-card-name">Artisan Breads</div>
           <div class="cat-card-count">24 varieties</div>
@@ -169,7 +204,10 @@
       </div>
 
       <div class="cat-card reveal" data-delay="2">
-        <img src="https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=600&q=80&fit=crop&fm=webp" alt="Pastries" loading="lazy" />
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=600&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=600&q=80&fit=crop" alt="Pastries" loading="lazy" />
+        </picture>
         <div class="cat-card-info">
           <div class="cat-card-name">Pastries</div>
           <div class="cat-card-count">36 varieties</div>
@@ -178,7 +216,10 @@
       </div>
 
       <div class="cat-card reveal" data-delay="3">
-        <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80&fit=crop&fm=webp" alt="Cakes" loading="lazy" />
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80&fit=crop" alt="Cakes &amp; Tarts" loading="lazy" />
+        </picture>
         <div class="cat-card-info">
           <div class="cat-card-name">Cakes &amp; Tarts</div>
           <div class="cat-card-count">18 varieties</div>
@@ -187,7 +228,10 @@
       </div>
 
       <div class="cat-card reveal" data-delay="4">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&fit=crop&fm=webp" alt="Coffee &amp; Drinks" loading="lazy" />
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&fit=crop" alt="Coffee &amp; Drinks" loading="lazy" />
+        </picture>
         <div class="cat-card-info">
           <div class="cat-card-name">Coffee &amp; Drinks</div>
           <div class="cat-card-count">12 varieties</div>
@@ -204,10 +248,16 @@
     <div class="about-teaser-inner">
       <div class="about-image-stack reveal-left">
         <div class="about-img-main">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&fit=crop&crop=faces&fm=webp" alt="Head baker" loading="lazy" />
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&fit=crop&crop=faces&fm=webp" type="image/webp" />
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&fit=crop&crop=faces" alt="Head baker" loading="lazy" />
+          </picture>
         </div>
         <div class="about-img-accent">
-          <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=400&q=80&fit=crop&fm=webp" alt="Fresh loaves" loading="lazy" />
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+            <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=400&q=80&fit=crop" alt="Fresh loaves" loading="lazy" />
+          </picture>
         </div>
         <div class="about-badge">
           <div class="about-badge-num">20+</div>
@@ -276,7 +326,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=500&q=80&fit=crop&fm=webp" alt="Country Sourdough" loading="lazy" />
+              <picture>
+                <source srcset="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=500&q=80&fit=crop&fm=webp" type="image/webp" />
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=500&q=80&fit=crop" alt="Country Sourdough" loading="lazy" />
+              </picture>
               <div class="product-badge">Bestseller</div>
             </div>
             <div class="product-info">
@@ -291,7 +344,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80&fit=crop&fm=webp" alt="Almond Croissant" loading="lazy" />
+              <picture>
+                <source srcset="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80&fit=crop&fm=webp" type="image/webp" />
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80&fit=crop" alt="Almond Croissant" loading="lazy" />
+              </picture>
               <div class="product-badge new">New</div>
             </div>
             <div class="product-info">
@@ -306,7 +362,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80&fit=crop&fm=webp" alt="Lemon Tart" loading="lazy" />
+              <picture>
+                <source srcset="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80&fit=crop&fm=webp" type="image/webp" />
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80&fit=crop" alt="Lemon Tart" loading="lazy" />
+              </picture>
             </div>
             <div class="product-info">
               <div class="product-name">Lemon Verbena Tart</div>
@@ -320,7 +379,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&q=80&fit=crop&fm=webp" alt="Cardamom Roll" loading="lazy" />
+              <picture>
+                <source srcset="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&q=80&fit=crop&fm=webp" type="image/webp" />
+                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&q=80&fit=crop" alt="Cardamom Roll" loading="lazy" />
+              </picture>
               <div class="product-badge sale">Sale</div>
             </div>
             <div class="product-info">
@@ -335,7 +397,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1520218747668-a1d58ad7d5ff?w=500&q=80&fit=crop&fm=webp" alt="Chocolate Cake" loading="lazy" />
+              <picture>
+                <source srcset="https://7thheavendehradun.in/wp-content/uploads/2025/09/10.webp" type="image/webp" />
+                <img src="https://7thheavendehradun.in/wp-content/uploads/2025/09/10.webp" alt="Chocolate Cake" loading="lazy" />
+              </picture>
             </div>
             <div class="product-info">
               <div class="product-name">Dark Chocolate Cake</div>
@@ -349,7 +414,10 @@
 
           <div class="product-card">
             <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1534432182912-63863115e106?w=500&q=80&fit=crop&fm=webp" alt="Focaccia" loading="lazy" />
+              <picture>
+                <source srcset="https://images.unsplash.com/photo-1534432182912-63863115e106?w=500&q=80&fit=crop&fm=webp" type="image/webp" />
+                <img src="https://images.unsplash.com/photo-1534432182912-63863115e106?w=500&q=80&fit=crop" alt="Focaccia" loading="lazy" />
+              </picture>
               <div class="product-badge new">New</div>
             </div>
             <div class="product-info">
@@ -407,7 +475,10 @@
 
         <div class="testimonial-slide">
           <div class="testimonial-img">
-            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&fit=crop&fm=webp" alt="Bakery interior" loading="lazy" />
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&fit=crop&fm=webp" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&fit=crop" alt="Bakery interior" loading="lazy" />
+            </picture>
           </div>
           <div class="testimonial-content">
             <div class="stars">★★★★★</div>
@@ -415,7 +486,10 @@
             <p class="testimonial-text">The sourdough here changed my entire relationship with bread. I've been a Saturday regular for three years and the quality never wavers. This bakery is a genuine community treasure.</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b25c?w=100&q=80&fit=crop&crop=faces&fm=webp" alt="Emma R" loading="lazy" />
+                <picture>
+                  <source srcset="https://img-cdn.publive.online/filters:format(webp)/filters:format(webp)/spiritz/media/media_files/2026/03/02/tanvi-palshikar-pastry-chef-jw-marriott-goa-2026-03-02-17-09-39.png" type="image/webp" />
+                  <img src="https://images.unsplash.com/photo-1494790108755-2616b612b25c?w=100&q=80&fit=crop&crop=faces" alt="Emma R" loading="lazy" />
+                </picture>
               </div>
               <div>
                 <div class="testimonial-name">Emma Richardson</div>
@@ -427,7 +501,10 @@
 
         <div class="testimonial-slide">
           <div class="testimonial-img">
-            <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=700&q=80&fit=crop&fm=webp" alt="Pastries" loading="lazy" />
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=700&q=80&fit=crop&fm=webp" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=700&q=80&fit=crop" alt="Pastries" loading="lazy" />
+            </picture>
           </div>
           <div class="testimonial-content">
             <div class="stars">★★★★★</div>
@@ -435,7 +512,10 @@
             <p class="testimonial-text">Stackly Bakery made our wedding cake and it was absolutely stunning — beautiful to look at and even better to eat. Every single guest asked who made it. Worth every penny.</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=faces&fm=webp" alt="James T" loading="lazy" />
+                <picture>
+                  <source srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=faces&fm=webp" type="image/webp" />
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=faces" alt="James T" loading="lazy" />
+                </picture>
               </div>
               <div>
                 <div class="testimonial-name">James &amp; Sophie Thornton</div>
@@ -447,7 +527,10 @@
 
         <div class="testimonial-slide">
           <div class="testimonial-img">
-            <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=700&q=80&fit=crop&fm=webp" alt="Cakes display" loading="lazy" />
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=700&q=80&fit=crop&fm=webp" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=700&q=80&fit=crop" alt="Cakes display" loading="lazy" />
+            </picture>
           </div>
           <div class="testimonial-content">
             <div class="stars">★★★★★</div>
@@ -455,7 +538,10 @@
             <p class="testimonial-text">I've tried bakeries across Europe and Stackly matches the very best. The croissants have that perfect lamination and the almond filling is not overly sweet. Truly world-class.</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&fit=crop&crop=faces&fm=webp" alt="Sophie M" loading="lazy" />
+                <picture>
+                  <source srcset="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&fit=crop&crop=faces&fm=webp" type="image/webp" />
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&fit=crop&crop=faces" alt="Sophie M" loading="lazy" />
+                </picture>
               </div>
               <div>
                 <div class="testimonial-name">Sophie Marceau</div>
@@ -484,13 +570,55 @@
     </div>
 
     <div class="insta-grid" style="margin-top:3rem">
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80&fit=crop&fm=webp" alt="Gallery 1" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&fit=crop&fm=webp" alt="Gallery 2" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?w=400&q=80&fit=crop&fm=webp" alt="Gallery 3" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&q=80&fit=crop&fm=webp" alt="Gallery 4" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80&fit=crop&fm=webp" alt="Gallery 5" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&q=80&fit=crop&fm=webp" alt="Gallery 6" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=400&q=80&fit=crop&fm=webp" alt="Gallery 7" loading="lazy" /><div class="insta-overlay"><span>📷</span></div></div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80&fit=crop" alt="Gallery 1" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&fit=crop" alt="Gallery 2" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://7thheavendehradun.in/wp-content/uploads/2025/09/10.webp" type="image/webp" />
+          <img src="https://7thheavendehradun.in/wp-content/uploads/2025/09/10.webp" alt="Gallery 3" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&q=80&fit=crop" alt="Gallery 4" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80&fit=crop" alt="Gallery 5" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&q=80&fit=crop" alt="Gallery 6" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
+      <div class="insta-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=400&q=80&fit=crop&fm=webp" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=400&q=80&fit=crop" alt="Gallery 7" loading="lazy" />
+        </picture>
+        <div class="insta-overlay"><span>📷</span></div>
+      </div>
     </div>
 
     <div class="insta-cta" style="margin-top:2rem">
@@ -516,16 +644,9 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-
       <div class="footer-brand">
         <div class="footer-logo-wrap">
-          <img
-            src="https://snabsolutions.in/wp-content/uploads/2026/02/stackly-snab-solutions.png"
-            alt="Stackly Bakery"
-            class="footer-logo-img"
-            loading="lazy"
-          />
-          <span class="footer-logo-text"><span></span></span>
+          <img src="https://snabsolutions.in/wp-content/uploads/2026/02/stackly-snab-solutions.png" alt="Stackly Bakery" class="footer-logo-img" loading="lazy" />
         </div>
         <p>An artisan bakery rooted in tradition, driven by flavour. Every loaf, every pastry, every cake — made by hand, with love, every morning since 2003.</p>
         <div class="footer-socials">
@@ -568,10 +689,9 @@
           <li><a href="#">Sat–Sun: 8am – 4pm</a></li>
         </ul>
       </div>
-
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2024 <span>Stackly Bakery</span>. All rights reserved.</p>
+      <p class="footer-copy">© 2026 <span>Stackly Bakery</span>. All rights reserved.</p>
       <div class="footer-legal">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>

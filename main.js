@@ -1,74 +1,62 @@
-/* ============================================
+/* ============================================================
    STACKLY BAKERY — main.js
-   All Interactions & Animations
-   ============================================ */
+   All interactions, animations, and effects
+   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  // ─── Page Transition ─────────────────────────
+  /* ── Page Transition ─────────────────────────────────────── */
   const overlay = document.getElementById('page-overlay');
 
   function navigateTo(url) {
-    if (!overlay) return (window.location.href = url);
+    if (!overlay) { window.location.href = url; return; }
     overlay.classList.add('active');
-    setTimeout(() => { window.location.href = url; }, 580);
+    setTimeout(() => { window.location.href = url; }, 600);
   }
 
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
-    if (
-      href &&
-      !href.startsWith('#') &&
-      !href.startsWith('http') &&
-      !href.startsWith('mailto') &&
-      !href.startsWith('tel') &&
-      !link.hasAttribute('data-no-transition')
-    ) {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        navigateTo(href);
-      });
+    if (href && !href.startsWith('#') && !href.startsWith('http') &&
+        !href.startsWith('mailto') && !href.startsWith('tel') &&
+        !link.hasAttribute('data-no-transition')) {
+      link.addEventListener('click', e => { e.preventDefault(); navigateTo(href); });
     }
   });
 
   if (overlay) {
     overlay.classList.add('exit');
-    setTimeout(() => overlay.classList.remove('exit', 'active'), 800);
+    setTimeout(() => overlay.classList.remove('exit', 'active'), 850);
   }
 
-  // ─── Navbar Scroll ────────────────────────────
+  /* ── Navbar Scroll ───────────────────────────────────────── */
   const navbar = document.getElementById('navbar');
-
   function handleScroll() {
     if (!navbar) return;
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
   }
-
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
-  // ─── Hamburger + Mobile Menu ──────────────────
-  const hamburger   = document.getElementById('hamburger');
-  const mobileMenu  = document.getElementById('mobile-menu');
-  const mobileClose = document.getElementById('mobile-close');
+  /* ── Hamburger + Mobile Menu ──────────────────────────────  */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose= document.getElementById('mobile-close');
 
   function openMenu() {
+    if (!hamburger || !mobileMenu) return;
     hamburger.classList.add('open');
     mobileMenu.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
+    if (!hamburger || !mobileMenu) return;
     hamburger.classList.remove('open');
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  if (hamburger && mobileMenu) {
+  if (hamburger) {
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
@@ -83,12 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-      closeMenu();
-    }
+    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
   });
 
-  // ─── Hero Slider ──────────────────────────────
+  /* ── Hero Slider ─────────────────────────────────────────── */
   const slides         = document.querySelectorAll('.hero-slide');
   const dots           = document.querySelectorAll('.slider-dot');
   const counterCurrent = document.getElementById('slider-current');
@@ -97,34 +83,28 @@ document.addEventListener('DOMContentLoaded', function () {
   let sliderTimer  = null;
 
   function goToSlide(idx) {
+    if (!slides.length) return;
     slides[currentSlide].classList.remove('active');
     if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-    currentSlide = (idx + slides.length) % slides.length;
+    currentSlide = ((idx % slides.length) + slides.length) % slides.length;
     slides[currentSlide].classList.add('active');
     if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-    if (counterCurrent) {
-      counterCurrent.textContent = String(currentSlide + 1).padStart(2, '0');
-    }
+    if (counterCurrent) counterCurrent.textContent = String(currentSlide + 1).padStart(2, '0');
   }
 
   function startSlider() {
     clearInterval(sliderTimer);
-    sliderTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+    sliderTimer = setInterval(() => goToSlide(currentSlide + 1), 5200);
   }
 
   if (slides.length > 0) {
     if (counterTotal) counterTotal.textContent = String(slides.length).padStart(2, '0');
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        goToSlide(i);
-        startSlider();
-      });
-    });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goToSlide(i); startSlider(); }));
     goToSlide(0);
     startSlider();
   }
 
-  // ─── Products Carousel ────────────────────────
+  /* ── Products Carousel ───────────────────────────────────── */
   const track   = document.getElementById('products-track');
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
@@ -132,13 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (track) {
     let currentPos = 0;
     const cards = track.querySelectorAll('.product-card');
-
-    const visibleCount = () => {
-      if (window.innerWidth < 768)  return 1;
-      if (window.innerWidth < 1100) return 2;
-      return 4;
-    };
-
+    const visibleCount = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1100 ? 2 : 4;
     const maxPos = () => Math.max(0, cards.length - visibleCount());
 
     function moveCarousel(dir) {
@@ -154,10 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(() => {
       if (currentPos >= maxPos()) currentPos = -1;
       moveCarousel(1);
-    }, 4500);
+    }, 4600);
   }
 
-  // ─── Testimonials Slider ──────────────────────
+  /* ── Testimonials Slider ─────────────────────────────────── */
   const tTrack = document.getElementById('testimonials-track');
   const tDots  = document.querySelectorAll('.t-dot');
   let tCurrent = 0;
@@ -165,30 +139,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function goToTestimonial(idx) {
     if (tDots[tCurrent]) tDots[tCurrent].classList.remove('active');
-    tCurrent = (idx + (tDots.length || 1)) % (tDots.length || 1);
+    tCurrent = ((idx % (tDots.length || 1)) + (tDots.length || 1)) % (tDots.length || 1);
     if (tTrack) tTrack.style.transform = `translateX(-${tCurrent * 100}%)`;
     if (tDots[tCurrent]) tDots[tCurrent].classList.add('active');
   }
 
   if (tTrack) {
-    tDots.forEach((d, i) => {
-      d.addEventListener('click', () => {
-        goToTestimonial(i);
-        clearInterval(tTimer);
-        tTimer = setInterval(() => goToTestimonial(tCurrent + 1), 5000);
-      });
-    });
+    tDots.forEach((d, i) => d.addEventListener('click', () => {
+      goToTestimonial(i);
+      clearInterval(tTimer);
+      tTimer = setInterval(() => goToTestimonial(tCurrent + 1), 5200);
+    }));
     goToTestimonial(0);
-    tTimer = setInterval(() => goToTestimonial(tCurrent + 1), 5000);
+    tTimer = setInterval(() => goToTestimonial(tCurrent + 1), 5200);
   }
 
-  // ─── Menu Tabs ────────────────────────────────
+  /* ── Menu Tabs ───────────────────────────────────────────── */
   const tabs   = document.querySelectorAll('.menu-tab');
   const panels = document.querySelectorAll('.menu-panel');
-
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-tab');
+      const target = tab.dataset.tab;
       tabs.forEach(t => t.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
@@ -197,11 +168,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ─── Scroll Reveal ────────────────────────────
-  const revealEls = document.querySelectorAll(
-    '.reveal, .reveal-left, .reveal-right, .reveal-scale'
-  );
-
+  /* ── Scroll Reveal ───────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -210,10 +178,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // ─── Counter Animation ────────────────────────
+  /* ── Counter Animation ───────────────────────────────────── */
   function animateCounter(el, target, duration, suffix) {
     let start = 0;
     const step = target / (duration / 16);
@@ -236,10 +203,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.4 });
-
   document.querySelectorAll('.stats-section').forEach(s => statsObserver.observe(s));
 
-  // ─── Add to Cart ──────────────────────────────
+  /* ── Add to Cart ─────────────────────────────────────────── */
   let cartCount = 0;
   const cartBadge = document.getElementById('cart-count');
 
@@ -247,8 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let toast = document.getElementById('toast');
     if (!toast) {
       toast = document.createElement('div');
-      toast.id = 'toast';
-      toast.className = 'toast';
+      toast.id = 'toast'; toast.className = 'toast';
       document.body.appendChild(toast);
     }
     toast.textContent = msg;
@@ -261,17 +226,16 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       cartCount++;
       if (cartBadge) cartBadge.textContent = cartCount;
-      const name =
-        btn.closest('.product-card, .menu-item-card')
-          ?.querySelector('.product-name, .menu-item-name')
-          ?.textContent || 'Item';
+      const name = btn.closest('.product-card, .menu-item-card')
+        ?.querySelector('.product-name, .menu-item-name')
+        ?.textContent || 'Item';
       showToast(`✓  "${name}" added to cart`);
-      btn.style.transform = 'scale(1.35)';
-      setTimeout(() => (btn.style.transform = ''), 320);
+      btn.style.transform = 'scale(1.4)';
+      setTimeout(() => { btn.style.transform = ''; }, 340);
     });
   });
 
-  // ─── Newsletter ───────────────────────────────
+  /* ── Newsletter ──────────────────────────────────────────── */
   document.querySelectorAll('.newsletter-form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -283,10 +247,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ─── Contact Form ─────────────────────────────
+  /* ── Contact Form ────────────────────────────────────────── */
   const contactFormEl = document.getElementById('contact-form');
   const successEl     = document.getElementById('cf-success');
-
   if (contactFormEl) {
     contactFormEl.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -295,29 +258,24 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => {
         contactFormEl.style.display = 'none';
         if (successEl) successEl.classList.add('show');
-      }, 400);
+      }, 420);
     });
   }
 
-  // ─── FAQ Toggle ───────────────────────────────
+  /* ── FAQ Toggle ──────────────────────────────────────────── */
   window.toggleFaq = function (el) {
     const answer = el.nextElementSibling;
     const isOpen = el.classList.contains('open');
-
     document.querySelectorAll('.faq-question').forEach(q => {
       q.classList.remove('open');
       q.nextElementSibling.classList.remove('open');
     });
-
-    if (!isOpen) {
-      el.classList.add('open');
-      answer.classList.add('open');
-    }
+    if (!isOpen) { el.classList.add('open'); answer.classList.add('open'); }
   };
 
-  // ─── Highlight today's hours ──────────────────
-  const dayMap = { 0: 'sun', 1: 'mon', 2: 'tue', 3: 'wed', 4: 'thu', 5: 'fri', 6: 'sat' };
-  const todayId = 'day-' + dayMap[new Date().getDay()];
+  /* ── Highlight today's hours ─────────────────────────────── */
+  const dayMap = { 0:'sun',1:'mon',2:'tue',3:'wed',4:'thu',5:'fri',6:'sat' };
+  const todayId  = 'day-' + dayMap[new Date().getDay()];
   const todayRow = document.getElementById(todayId);
   if (todayRow) {
     todayRow.classList.add('today');
@@ -327,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
     daySpan.prepend(dot);
   }
 
-  // ─── Shop sidebar filters ─────────────────────
+  /* ── Shop sidebar filters ────────────────────────────────── */
   document.querySelectorAll('.sidebar-list li').forEach(li => {
     li.addEventListener('click', () => {
       li.closest('ul')?.querySelectorAll('li').forEach(i => i.classList.remove('active'));
@@ -335,203 +293,171 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ─── Parallax on inner hero ───────────────────
+  /* ── Parallax ────────────────────────────────────────────── */
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
-
-    // Home hero slides
-    document.querySelectorAll('.hero-slide.active img').forEach(img => {
+    document.querySelectorAll('.hero-slide.active picture img').forEach(img => {
       img.style.transform = `scale(1) translateY(${scrolled * 0.22}px)`;
     });
-
-    // Inner page hero
-    const innerBg = document.querySelector('.inner-hero img.hero-bg');
-    if (innerBg) {
-      innerBg.style.transform = `scale(1.06) translateY(${scrolled * 0.18}px)`;
-    }
-
-    // Contact hero bg
+    const innerBg = document.querySelector('.inner-hero picture img');
+    if (innerBg) innerBg.style.transform = `scale(1.06) translateY(${scrolled * 0.18}px)`;
     const contactBg = document.querySelector('.contact-hero-bg');
-    if (contactBg) {
-      contactBg.style.transform = `scale(1.08) translateY(${scrolled * 0.12}px)`;
-    }
+    if (contactBg) contactBg.style.transform = `scale(1.08) translateY(${scrolled * 0.12}px)`;
   }, { passive: true });
 
-  // ─── Active nav link detection ────────────────
+  /* ── Active nav link ─────────────────────────────────────── */
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-    const aPage = a.getAttribute('href');
-    if (aPage === currentPage) a.classList.add('active');
+    if (a.getAttribute('href') === currentPage) a.classList.add('active');
   });
 
-  // ─── Magnetic hover on buttons ───────────────
+  /* ── Magnetic button hover ───────────────────────────────── */
   if (window.innerWidth > 768) {
     document.querySelectorAll('.btn-primary, .cf-submit, .nav-cta').forEach(el => {
       el.addEventListener('mousemove', function (e) {
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+        const y = e.clientY - rect.top  - rect.height / 2;
         this.style.transform = `translate(${x * 0.12}px, ${y * 0.14}px)`;
       });
-
-      el.addEventListener('mouseleave', function () {
-        this.style.transform = '';
-      });
+      el.addEventListener('mouseleave', function () { this.style.transform = ''; });
     });
   }
 
-  // ─── Staggered card hover shine ──────────────
+  /* ── Card shine on hover ─────────────────────────────────── */
   document.querySelectorAll('.product-card, .menu-item-card, .cat-card').forEach(card => {
     card.addEventListener('mousemove', function (e) {
       const rect = this.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      this.style.setProperty('--shine-x', x + '%');
-      this.style.setProperty('--shine-y', y + '%');
+      this.style.setProperty('--shine-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      this.style.setProperty('--shine-y', ((e.clientY - rect.top)  / rect.height * 100) + '%');
     });
   });
 
-  // ─── Subtle cursor glow (desktop only) ───────
+  /* ── Cursor glow (desktop) ───────────────────────────────── */
   if (window.innerWidth > 768) {
     const glow = document.createElement('div');
     glow.style.cssText = `
-      position:fixed;width:260px;height:260px;border-radius:50%;
-      background:radial-gradient(circle,rgba(200,136,74,0.06) 0%,transparent 70%);
+      position:fixed;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle,rgba(200,136,74,0.055) 0%,transparent 70%);
       pointer-events:none;transform:translate(-50%,-50%);z-index:0;
-      transition:opacity 0.3s;will-change:left,top;
+      will-change:left,top; transition:opacity 0.3s;
     `;
     document.body.appendChild(glow);
-    let mouseX = 0, mouseY = 0;
-
     document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      glow.style.left = mouseX + 'px';
-      glow.style.top  = mouseY + 'px';
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
     });
   }
 
-  // ─── Floating ambient particles (home) ───────
+  /* ── Ambient floating particles on home ─────────────────── */
   if (document.querySelector('.hero-home')) {
-    const symbols = ['✦', '✧', '·', '○', '◦', '∘'];
+    const symbols = ['✦','✧','·','○','◦','∘'];
     for (let i = 0; i < 14; i++) {
       const p = document.createElement('span');
       p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
       const size = Math.random() * 10 + 5;
+      p.className = 'particle';
       p.style.cssText = `
-        position:fixed;pointer-events:none;z-index:1;
         font-size:${size}px;
         color:rgba(200,136,74,${Math.random() * 0.08 + 0.02});
-        left:${Math.random() * 100}vw;top:${Math.random() * 100}vh;
-        animation:floatParticle ${9 + Math.random() * 10}s ease-in-out ${Math.random() * 6}s infinite;
+        left:${Math.random() * 100}vw;
+        top:${Math.random() * 100}vh;
+        animation-duration:${9 + Math.random() * 10}s;
+        animation-delay:${Math.random() * 6}s;
       `;
       document.body.appendChild(p);
     }
-
-    const ps = document.createElement('style');
-    ps.textContent = `
-      @keyframes floatParticle {
-        0%,100% { transform:translateY(0) rotate(0deg); opacity:0.35; }
-        25%      { transform:translateY(-28px) rotate(90deg); opacity:0.75; }
-        50%      { transform:translateY(-14px) rotate(180deg) translateX(18px); }
-        75%      { transform:translateY(-38px) rotate(270deg); opacity:0.28; }
-      }
-    `;
-    document.head.appendChild(ps);
   }
 
-  // ─── Tilt effect on team & about images ──────
-  document.querySelectorAll('.team-img, .about-story-img, .testimonial-img').forEach(el => {
+  /* ── Tilt on testimonial images ──────────────────────────── */
+  document.querySelectorAll('.testimonial-img, .about-story-img').forEach(el => {
     el.addEventListener('mousemove', function (e) {
       const rect = this.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width  - 0.5;
       const y = (e.clientY - rect.top)  / rect.height - 0.5;
       this.style.transform = `perspective(800px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) scale(1.02)`;
     });
-
-    el.addEventListener('mouseleave', function () {
-      this.style.transform = '';
-    });
+    el.addEventListener('mouseleave', function () { this.style.transform = ''; });
   });
 
-  // ─── Timeline animated border on scroll ──────
+  /* ── Timeline border animate ─────────────────────────────── */
   const timelineItems = document.querySelectorAll('.timeline-item');
   if (timelineItems.length) {
-    const tlObserver = new IntersectionObserver((entries) => {
+    const tlObs = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
           const body = entry.target.querySelector('.timeline-body');
-          if (body) {
-            setTimeout(() => {
-              body.style.borderLeftColor = 'var(--caramel)';
-              body.style.borderLeftWidth = '3px';
-            }, i * 80);
-          }
-          tlObserver.unobserve(entry.target);
+          if (body) setTimeout(() => {
+            body.style.borderLeftColor = 'var(--caramel)';
+            body.style.borderLeftWidth = '3px';
+          }, i * 80);
+          tlObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.3 });
-
-    timelineItems.forEach(item => tlObserver.observe(item));
+    timelineItems.forEach(item => tlObs.observe(item));
   }
 
-  // ─── Marquee hover pause ──────────────────────
+  /* ── Marquee hover pause ─────────────────────────────────── */
   const marqueeTrack = document.querySelector('.marquee-track');
   if (marqueeTrack) {
-    marqueeTrack.addEventListener('mouseenter', () => {
-      marqueeTrack.style.animationPlayState = 'paused';
-    });
-    marqueeTrack.addEventListener('mouseleave', () => {
-      marqueeTrack.style.animationPlayState = 'running';
-    });
+    marqueeTrack.addEventListener('mouseenter', () => { marqueeTrack.style.animationPlayState = 'paused'; });
+    marqueeTrack.addEventListener('mouseleave', () => { marqueeTrack.style.animationPlayState = 'running'; });
   }
 
-  // ─── Number morph on stat hover ──────────────
+  /* ── Stat number morph on hover ──────────────────────────── */
   document.querySelectorAll('.stat-item').forEach(item => {
     const numEl = item.querySelector('[data-count]');
     if (!numEl) return;
     const target = parseInt(numEl.getAttribute('data-count'));
     const suffix = numEl.getAttribute('data-suffix') || '';
-
     item.addEventListener('mouseenter', () => {
-      let val = target;
       const flash = setInterval(() => {
         numEl.textContent = Math.floor(Math.random() * target) + suffix;
       }, 55);
-      setTimeout(() => {
-        clearInterval(flash);
-        numEl.textContent = target + suffix;
-      }, 480);
+      setTimeout(() => { clearInterval(flash); numEl.textContent = target + suffix; }, 480);
     });
   });
 
-  // ─── Insta grid staggered hover ──────────────
+  /* ── Instagram hover stagger ─────────────────────────────── */
   document.querySelectorAll('.insta-item').forEach((item, i) => {
     item.style.transitionDelay = (i * 0.04) + 's';
   });
 
-  // ─── Section label line draw animation ───────
-  const labelObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const line = entry.target.querySelector('.section-label::before');
-        entry.target.style.setProperty('--label-width', '28px');
-        labelObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.section-label').forEach(el => labelObserver.observe(el));
-
-  // ─── Smooth image lazy load shimmer ──────────
+  /* ── Lazy image fade-in ──────────────────────────────────── */
   document.querySelectorAll('img[loading="lazy"]').forEach(img => {
     img.style.opacity = '0';
-    img.style.transition = 'opacity 0.5s ease';
-    img.addEventListener('load', () => {
-      img.style.opacity = '1';
-    });
-    // If already cached/loaded
+    img.style.transition = 'opacity 0.55s ease';
+    img.addEventListener('load', () => { img.style.opacity = '1'; });
     if (img.complete) img.style.opacity = '1';
   });
+
+  /* ── Smooth stagger for grid cards ──────────────────────── */
+  document.querySelectorAll('.categories-grid .cat-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.07) + 's';
+  });
+
+  /* ── Typewriter effect for hero eyebrow ─────────────────── */
+  function typeWriter(el, text, delay) {
+    el.textContent = '';
+    let i = 0;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(timer);
+      }, 35);
+    }, delay);
+  }
+
+  const activeSlide = document.querySelector('.hero-slide.active');
+  if (activeSlide) {
+    const eyebrow = activeSlide.querySelector('.hero-eyebrow');
+    if (eyebrow) {
+      const txt = eyebrow.textContent.trim();
+      eyebrow.textContent = '';
+      typeWriter(eyebrow, txt, 600);
+    }
+  }
 
 });
